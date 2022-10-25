@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MovieList from "../components/MovieList";
 import MovieButton from "../components/MovieButton";
+import MovieForm from "../components/MovieForm";
 
 const UpcomingMovies = () => {
   const [movies, setMovies] = useState([
@@ -31,6 +32,12 @@ const UpcomingMovies = () => {
     },
   ]);
 
+  const addMovie = (newMovie) => {
+    movies.id = Date.now();
+    const updateMovies = [...movies, newMovie];
+    setMovies(updateMovies);
+  };
+
   return (
     <div>
       <h1>Upcoming film releases for UK</h1>
@@ -38,6 +45,9 @@ const UpcomingMovies = () => {
       <MovieList movies={movies} />
       <hr></hr>
       <MovieButton />
+      <hr></hr>
+
+      <MovieForm onMovieSubmit={addMovie} />
     </div>
   );
 };
